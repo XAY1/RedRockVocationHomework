@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+            android:icon="@drawable/ic_menu_password"
+            android:title="更换密码" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:icon="@drawable/ic_menu_external"
+            android:title="导入密钥" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:icon="@drawable/ic_menu_external"
+            android:title="导出密钥" />
+    </group>
+
+    <item android:title="更多">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/nav_menu_help"
+                android:title="帮助" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/nav_menu_about"
+                android:title="关于" />
+            <item
+                android:id="@+id/help"
+                android:icon="@drawable/nav_protocol"
+                android:title="开源协议">
+
+            </item>
+        </menu>
+    </item>
+
+</menu>
