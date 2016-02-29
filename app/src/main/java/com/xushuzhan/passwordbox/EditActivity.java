@@ -39,7 +39,7 @@ public class EditActivity extends AppCompatActivity {
             }
         });
 
-        okButton=(Button)findViewById(R.id.ok_button);
+        okButton=(Button)findViewById(R.id.edit_delete);
         edit_1= (EditText) findViewById(R.id.name);
         edit_2=(EditText)findViewById(R.id.account);
         edit_3=(EditText)findViewById(R.id.password);
