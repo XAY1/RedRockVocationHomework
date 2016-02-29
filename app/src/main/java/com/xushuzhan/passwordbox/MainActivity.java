@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity
 
                 @Override
                 public void onItemClick(View view,HashMap data) {
+                    finish();
                     Intent intent=new Intent(MainActivity.this,DetailActivity.class);
                     startActivity(intent);
                     DetailActivity.DtailDatas=data;
@@ -96,7 +97,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                finish();
                 Intent intent=new Intent(MainActivity.this,EditActivity.class);
                 startActivity(intent);
             }
@@ -122,7 +123,8 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+           // super.onBackPressed();
+           android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
 
