@@ -76,9 +76,10 @@ public class EditActivity extends AppCompatActivity {
                 db.insert("user",null,values);
                 MyAdapter mAdapter=new MyAdapter();
 
-               // EditActivity.this.finish();
+               
                 Toast.makeText(EditActivity.this,"创建成功",Toast.LENGTH_SHORT).show();
                 MainActivity.datas.removeAll(MainActivity.datas);
+                finish();
                 Intent intent=new Intent(EditActivity.this,MainActivity.class);
                 startActivity(intent);
 
@@ -88,7 +89,9 @@ public class EditActivity extends AppCompatActivity {
     //监听Back键按下事件
     @Override
     public void onBackPressed() {
-        super.onBackPressed();//调用父类finish方法
+        finish();
+        Intent intent=new Intent(EditActivity.this,MainActivity.class);
+        startActivity(intent);
 
     }
 }
