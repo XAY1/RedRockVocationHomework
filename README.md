@@ -8,5 +8,10 @@
 ######          2.功能方面：能将用户输入的账号信息（包含账号,密码,时间，备注）保存在SQLite中，并对其实现增加和删除。  
           
 ######          3.存储和显示的实现方式：SQLite+RecyclerView+Hashmap  
+        
+        
+        
           
+          
+#####         密钥盒子模仿版APK和运行截图：http://pan.baidu.com/s/1c1qn7va
           
