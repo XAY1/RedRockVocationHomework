@@ -51,10 +51,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/p_name"
                     android:layout_width="220dp"
                     android:layout_height="wrap_content">
 
-                    <AutoCompleteTextView
+                    <EditText
                         android:id="@+id/name"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -80,6 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content">
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/p_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -123,6 +125,7 @@
                     android:textColor="#FF4081"
                     />
                 <android.support.design.widget.TextInputLayout
+                    android:id="@+id/p_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
@@ -142,6 +145,7 @@
 
             </RelativeLayout>
             <android.support.design.widget.TextInputLayout
+                android:id="@+id/p_note"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
