@@ -87,10 +87,8 @@ public class EditActivity extends AppCompatActivity {
                     MyAdapter mAdapter = new MyAdapter();
 
                     Toast.makeText(EditActivity.this, "创建成功", Toast.LENGTH_SHORT).show();
-                    MainActivity.datas.removeAll(MainActivity.datas);
+
                     finish();
-                    Intent intent = new Intent(EditActivity.this, MainActivity.class);
-                    startActivity(intent);
 
                 }
             }
@@ -100,8 +98,6 @@ public class EditActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         finish();
-        Intent intent=new Intent(EditActivity.this,MainActivity.class);
-        startActivity(intent);
 
     }
 }
