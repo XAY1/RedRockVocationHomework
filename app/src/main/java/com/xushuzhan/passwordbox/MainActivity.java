@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity
+/*public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     private RecyclerView mRecyclerView;
@@ -102,7 +102,105 @@ public class MainActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+*/public class MainActivity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener {
 
+    private RecyclerView mRecyclerView;
+    private MyAdapter mAdapter;
+//00<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    MyDatabaseHelper dbhelper;
+    public static List datas = new ArrayList<HashMap<String, Object>>();
+
+
+    protected void initialSQLite(){
+        dbhelper=new MyDatabaseHelper(MainActivity.this,"AccountInformation.db",null,1);
+        final SQLiteDatabase db=dbhelper.getWritableDatabase();
+
+        //查询表中所有数据
+        Cursor cursor = db.query("user", null, null, null, null, null, null);
+        while (cursor.moveToNext()) {
+            HashMap<String, Object> map = new HashMap<String, Object>();
+
+            map.put("id", cursor.getString(0));
+            map.put("name", cursor.getString(1));
+            map.put("account", cursor.getString(2));
+            map.put("password", cursor.getString(3));
+            map.put("note", cursor.getString(4));
+            map.put("time", cursor.getString(5));
+
+            datas.add(map);
+
+        }
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        //创建RecyclerView
+        mRecyclerView = (RecyclerView) findViewById(R.id.id_recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mAdapter = new MyAdapter());
+        //为RecyclerView的Item设置监听
+
+        mAdapter.setOnItemClickListener(new MyAdapter.OnRecyclerViewItemClickListener(){
+
+            @Override
+            public void onItemClick(View view,HashMap data) {
+                Intent intent=new Intent(MainActivity.this,DetailActivity.class);
+                startActivityForResult(intent, 1);
+                MainActivity.datas.removeAll(MainActivity.datas);
+                DetailActivity.DtailDatas=data;
+
+            }
+        });
+            if(requestCode==0||requestCode==1){
+               initialSQLite();
+            }
+
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        try{
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        //防止从后台打开时重复添加
+        datas.removeAll(datas);
+        initialSQLite();
+
+        //创建RecyclerView
+        mRecyclerView = (RecyclerView) findViewById(R.id.id_recyclerview);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+        mRecyclerView.setAdapter(mAdapter = new MyAdapter());
+
+        //为RecyclerView的Item设置监听
+
+            mAdapter.setOnItemClickListener(new MyAdapter.OnRecyclerViewItemClickListener(){
+
+                @Override
+                public void onItemClick(View view,HashMap data) {
+                    Intent intent=new Intent(MainActivity.this,DetailActivity.class);
+                    startActivityForResult(intent, 1);
+                    DetailActivity.DtailDatas=data;
+                }
+            });
+
+
+        //创建toolbar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        //创建右下角的圆形悬浮按钮FloatingActionButton
+        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+
+        //为FloatingActionButton设置监听
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                datas.removeAll(datas);
+                Intent intent=new Intent(MainActivity.this,EditActivity.class);
+                startActivityForResult(intent, 0);
+                //startActivity(intent);
+                //finish();
+            }
+        });
         //创建NavigationDrawer
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -123,8 +221,8 @@ public class MainActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-           // super.onBackPressed();
-           android.os.Process.killProcess(android.os.Process.myPid());
+           super.onBackPressed();
+           //android.os.Process.killProcess(android.os.Process.myPid());
         }
     }
 
