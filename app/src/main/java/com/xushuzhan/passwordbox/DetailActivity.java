@@ -56,8 +56,6 @@ public class DetailActivity extends AppCompatActivity {
                 db.delete("user","id=?",new String[]{idToDel});
                 MainActivity.datas.removeAll(MainActivity.datas);
                 finish();
-                Intent intent=new Intent(DetailActivity.this,MainActivity.class);
-                startActivity(intent);
             }
         });
 
@@ -75,9 +73,8 @@ public class DetailActivity extends AppCompatActivity {
     //监听Back键按下事件
     @Override
     public void onBackPressed() {
+        MainActivity.datas.removeAll(MainActivity.datas);
         finish();
-        Intent intent=new Intent(DetailActivity.this,MainActivity.class);
-        startActivity(intent);
 
     }
 }
